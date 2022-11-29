@@ -71,7 +71,7 @@ namespace CapaDatos
         {
             DataSet ds = new DataSet();
             MySqlConnection conn = new MySqlConnection(stringConexion);
-            string query = "SELECT * FROM afiliadoplanesadicionales";
+            string query = "SELECT * FROM afiliados";
             conn.Open();
 
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
@@ -80,6 +80,25 @@ namespace CapaDatos
 
             conn.Close();
             return ds;
+        }
+
+        public void UpdatePlanes(Afiliado paramAfiliado)
+        {
+            MySqlConnection conn = new MySqlConnection(stringConexion);
+            string query = @"INSERT INTO afiliadoplanesadicionales (idAfiliado,idPlan,porcentajeCobertura) VALUES (@nombre,@apellido,@idplan,@fechaalta,@observaciones)";
+            MySqlCommand command = new MySqlCommand(query, conn);
+            //command.Parameters.AddWithValue("@nombre", paramAfiliado.Nombre);
+
+            try
+            {
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { conn.Close(); }
         }
     }
 }

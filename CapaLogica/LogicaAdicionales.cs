@@ -1,4 +1,5 @@
 ﻿using CapaDatos;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,5 +16,16 @@ namespace CapaLogica
         {
             return objDatos.TraerAfiliadoPlanesAdicionales();
         }
+
+        public DataTable TraerPlanes()
+        {
+            return objDatos.TraerPlanes();
+        }
+
+        public void ActualizarPlan(Afiliado paramAfi)
+        {
+            objDatos.Create(paramAfi);
+        }
+
     }
 }
